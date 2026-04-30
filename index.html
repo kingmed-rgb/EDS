@@ -998,11 +998,27 @@
   /* ── Bonus Section ── */
   .bonus-section {
     margin-top: 28px;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 640px) {
+    .bonus-section {
+      border-radius: 20px;
+    }
   }
 
   .bonus-section-header {
     text-align: center;
-    margin-bottom: 20px;
+    padding: 28px 24px 0;
+  }
+
+  @media (min-width: 640px) {
+    .bonus-section-header {
+      padding: 36px 36px 0;
+    }
   }
 
   .bonus-eyebrow {
@@ -1046,65 +1062,74 @@
     font-size: 13px;
     color: var(--text-secondary);
     font-weight: 300;
+    margin-bottom: 0;
+  }
+
+  .bonus-mockup-wrap {
+    padding: 20px 16px 4px;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (min-width: 640px) {
+    .bonus-mockup-wrap {
+      padding: 24px 36px 4px;
+    }
+  }
+
+  .bonus-mockup-img {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 28px rgba(0,0,0,0.55));
   }
 
   .bonus-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-
-  @media (min-width: 640px) {
-    .bonus-grid {
-      gap: 20px;
-    }
+    gap: 1px;
+    background: var(--dark-border);
+    border-top: 1px solid var(--dark-border);
+    margin-top: 20px;
   }
 
   .bonus-card {
     background: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-radius: 16px;
-    overflow: hidden;
+    padding: 20px 18px 22px;
     display: flex;
     flex-direction: column;
-    transition: border-color 0.25s ease, transform 0.25s ease;
-  }
-
-  .bonus-card:hover {
-    border-color: rgba(232,168,124,0.35);
-    transform: translateY(-3px);
-  }
-
-  .bonus-card-thumb {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    background-image: url('bundle-mockup.png');
-    background-size: 300%;
-    background-repeat: no-repeat;
-    position: relative;
-  }
-
-  .bonus-card-thumb.poems-thumb {
-    background-position: 0% 20%;
-  }
-
-  .bonus-card-thumb.worksheet-thumb {
-    background-position: 100% 30%;
-  }
-
-  .bonus-card-body {
-    padding: 14px 14px 18px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    gap: 8px;
   }
 
   @media (min-width: 640px) {
-    .bonus-card-body {
-      padding: 18px 18px 22px;
-      gap: 8px;
+    .bonus-card {
+      padding: 24px 24px 28px;
     }
+  }
+
+  .bonus-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(232,168,124,0.1);
+    border: 1px solid rgba(232,168,124,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+  }
+
+  .bonus-card-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--accent);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .bonus-free-tag {
@@ -1132,7 +1157,7 @@
 
   @media (min-width: 640px) {
     .bonus-card-title {
-      font-size: 18px;
+      font-size: 17px;
     }
   }
 
@@ -1142,12 +1167,6 @@
     font-weight: 300;
     line-height: 1.55;
     margin: 0;
-  }
-
-  @media (min-width: 640px) {
-    .bonus-card-desc {
-      font-size: 13px;
-    }
   }
 
   .bonus-value-line {
@@ -1898,29 +1917,32 @@
         <h3 class="bonus-section-title">2 Bonus Items Included</h3>
         <p class="bonus-section-sub">Yours free when you get the bundle today</p>
       </div>
+      <div class="bonus-mockup-wrap">
+        <img class="bonus-mockup-img" src="bundle-mockup.png" alt="Bundle includes the workbook, poems & letters book, and inner child worksheet">
+      </div>
       <div class="bonus-grid">
         <div class="bonus-card">
-          <div class="bonus-card-thumb poems-thumb" role="img" aria-label="Poems & Letters for Eldest Daughters book cover"></div>
-          <div class="bonus-card-body">
-            <span class="bonus-free-tag">Free Bonus</span>
-            <h4 class="bonus-card-title">Poems &amp; Letters for Eldest Daughters</h4>
-            <p class="bonus-card-desc">Words for the things you've carried silently. To be read slowly and returned to.</p>
-            <div class="bonus-value-line">
-              <span class="bonus-value-label">Valued at</span>
-              <span class="bonus-value-price">$7</span>
-            </div>
+          <div class="bonus-card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <span class="bonus-free-tag">Free Bonus</span>
+          <h4 class="bonus-card-title">Poems &amp; Letters for Eldest Daughters</h4>
+          <p class="bonus-card-desc">Words for the things you've carried silently. To be read slowly and returned to.</p>
+          <div class="bonus-value-line">
+            <span class="bonus-value-label">Valued at</span>
+            <span class="bonus-value-price">$7</span>
           </div>
         </div>
         <div class="bonus-card">
-          <div class="bonus-card-thumb worksheet-thumb" role="img" aria-label="Inner Child Healing Worksheet on tablet"></div>
-          <div class="bonus-card-body">
-            <span class="bonus-free-tag">Free Bonus</span>
-            <h4 class="bonus-card-title">Inner Child Healing Worksheet</h4>
-            <p class="bonus-card-desc">A guided space to revisit childhood memories and begin to heal what was left unspoken.</p>
-            <div class="bonus-value-line">
-              <span class="bonus-value-label">Valued at</span>
-              <span class="bonus-value-price">$7</span>
-            </div>
+          <div class="bonus-card-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>
+          </div>
+          <span class="bonus-free-tag">Free Bonus</span>
+          <h4 class="bonus-card-title">Inner Child Healing Worksheet</h4>
+          <p class="bonus-card-desc">A guided space to revisit childhood memories and begin to heal what was left unspoken.</p>
+          <div class="bonus-value-line">
+            <span class="bonus-value-label">Valued at</span>
+            <span class="bonus-value-price">$7</span>
           </div>
         </div>
       </div>
