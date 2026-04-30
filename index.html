@@ -600,38 +600,90 @@
   }
 
   .result-score-section {
-    text-align: center;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 16px;
+    overflow: hidden;
     margin: 0 0 24px;
+  }
+
+  .result-score-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 24px 20px;
+  }
+
+  @media (min-width: 640px) {
+    .result-score-body {
+      gap: 28px;
+      padding: 32px 32px 24px;
+    }
   }
 
   .result-score-percent {
     font-family: 'DM Sans', sans-serif;
-    font-size: clamp(112px, 22vw, 172px);
+    font-size: clamp(56px, 14vw, 80px);
     font-weight: 300;
     color: var(--accent);
-    line-height: 0.9;
-    text-align: center;
-    letter-spacing: 0;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .result-score-right {
+    flex: 1;
+    min-width: 0;
+    padding-top: 6px;
   }
 
   .result-score-subtitle {
     color: var(--accent);
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    margin-top: 4px;
-    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    margin-bottom: 8px;
   }
 
   .result-score-note {
     color: var(--text-secondary);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
-    line-height: 1.6;
-    margin: 14px auto 0;
-    max-width: 520px;
-    text-align: center;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (min-width: 640px) {
+    .result-score-note {
+      font-size: 14px;
+    }
+  }
+
+  .result-score-bar-wrap {
+    padding: 0 24px 24px;
+  }
+
+  @media (min-width: 640px) {
+    .result-score-bar-wrap {
+      padding: 0 32px 28px;
+    }
+  }
+
+  .result-score-bar-track {
+    height: 4px;
+    background: var(--dark-border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .result-score-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+    width: 0%;
+    transition: width 1.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   .visual-section {
@@ -2459,9 +2511,18 @@ function showResults() {
 
   document.getElementById('visualSection').innerHTML = `
     <div class="result-score-section">
-      <div id="animPercent" class="result-score-percent">0%</div>
-      <div class="result-score-subtitle">${resultCopy.title}</div>
-      <p class="result-score-note">${resultCopy.note}</p>
+      <div class="result-score-body">
+        <div id="animPercent" class="result-score-percent">0%</div>
+        <div class="result-score-right">
+          <div class="result-score-subtitle">${resultCopy.title}</div>
+          <p class="result-score-note">${resultCopy.note}</p>
+        </div>
+      </div>
+      <div class="result-score-bar-wrap">
+        <div class="result-score-bar-track">
+          <div class="result-score-bar-fill" id="scoreBarFill"></div>
+        </div>
+      </div>
     </div>
   `;
 
@@ -2470,10 +2531,12 @@ function showResults() {
   resultPage.classList.add('visible');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Animate percentage after render
+  // Animate percentage and bar after render
   setTimeout(() => {
     const el = document.getElementById('animPercent');
     if (el) animatePercent(el, percent, 1400);
+    const bar = document.getElementById('scoreBarFill');
+    if (bar) requestAnimationFrame(() => { bar.style.width = percent + '%'; });
     setTimeout(() => {
       resultPage.classList.remove('result-waiting');
       resultPage.classList.add('result-ready');
