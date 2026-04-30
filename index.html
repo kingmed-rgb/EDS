@@ -200,6 +200,10 @@
     transform: translateY(0);
   }
 
+  .question-card.advancing {
+    pointer-events: none;
+  }
+
   .q-number {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
@@ -2283,6 +2287,7 @@ function renderQuestion(index) {
     document.getElementById('progressLabel').textContent = `Question ${qIndex} of ${numQs}`;
 
     card.classList.add('visible');
+    card.classList.remove('advancing');
     scrollToQuizTop();
   }, 200);
 }
@@ -2329,6 +2334,7 @@ function selectSingleChoice(el, i, q, container, selector) {
   scores[q.id] = q.options[i].points;
   answered[q.id] = true;
   hideNext();
+  document.getElementById('questionCard').classList.add('advancing');
   autoAdvanceTimer = setTimeout(nextQuestion, 260);
 }
 
