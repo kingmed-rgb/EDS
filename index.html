@@ -1394,9 +1394,11 @@
     .cta-block {
       border-radius: 20px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 3fr;
       align-items: stretch;
       margin-top: 32px;
+      width: calc(100% + 64px);
+      margin-left: -32px;
     }
   }
 
@@ -1410,7 +1412,7 @@
 
   @media (min-width: 640px) {
     .offer-img-wrap {
-      padding: 40px 32px;
+      padding: 24px 24px;
       border-right: 1px solid var(--dark-border);
     }
   }
@@ -1436,7 +1438,7 @@
 
   @media (min-width: 640px) {
     .offer-content {
-      padding: 36px 32px;
+      padding: 24px 28px;
       display: flex;
       flex-direction: column;
       justify-content: center;
