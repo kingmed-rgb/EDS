@@ -621,6 +621,16 @@
     text-transform: uppercase;
   }
 
+  .result-score-note {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin: 14px auto 0;
+    max-width: 520px;
+    text-align: center;
+  }
+
   .visual-section {
     text-align: left;
     margin-bottom: 28px;
@@ -2193,10 +2203,23 @@ function animatePercent(el, target, duration) {
   requestAnimationFrame(step);
 }
 
-function getChanceLabel(total) {
-  if (total >= 19) return 'High chance';
-  if (total >= 10) return 'Moderate chance';
-  return 'Low chance';
+function getResultCopy(total) {
+  if (total >= 19) {
+    return {
+      title: 'Strong eldest daughter pattern',
+      note: 'Your answers point to a deep habit of carrying responsibility, guilt, and emotional labor for others. This score is not a label. It is a sign that the role you learned may be costing you more than people see.'
+    };
+  }
+  if (total >= 10) {
+    return {
+      title: 'Moderate eldest daughter pattern',
+      note: 'Your answers show parts of the eldest daughter role may still be active: over-responsibility, guilt, or being the person others lean on. The pattern is visible, and it makes sense that it would feel tiring.'
+    };
+  }
+  return {
+    title: 'Low eldest daughter pattern',
+    note: 'Your answers suggest this pattern may not define your daily life, or you may have already built distance from it. Notice the places where responsibility still feels heavier than it should.'
+  };
 }
 
 function showResults() {
@@ -2209,7 +2232,7 @@ function showResults() {
   const total = Object.values(scores).reduce((a, b) => a + b, 0);
   const maxScore = getMaxScore();
   const percent = maxScore ? Math.round((total / maxScore) * 100) : 0;
-  const chanceLabel = getChanceLabel(total);
+  const resultCopy = getResultCopy(total);
 
   document.getElementById('resultTier').innerHTML = '';
 
@@ -2219,7 +2242,8 @@ function showResults() {
   document.getElementById('visualSection').innerHTML = `
     <div class="result-score-section">
       <div id="animPercent" class="result-score-percent">0%</div>
-      <div class="result-score-subtitle">${chanceLabel}</div>
+      <div class="result-score-subtitle">${resultCopy.title}</div>
+      <p class="result-score-note">${resultCopy.note}</p>
     </div>
   `;
 
