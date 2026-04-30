@@ -626,6 +626,14 @@
     margin-top: 4px;
     text-align: center;
     text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .result-score-subtitle.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .result-score-note {
@@ -637,8 +645,8 @@
     max-width: 520px;
     text-align: center;
     opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(8px);
+    transition: opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s;
   }
 
   .result-score-note.visible {
@@ -2481,16 +2489,24 @@ function showResults() {
   resultPage.classList.add('visible');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Animate percentage after render
+  // Stage 1 — animate percentage (starts at 300ms, runs 1400ms)
   setTimeout(() => {
     const el = document.getElementById('animPercent');
     if (el) animatePercent(el, percent, 1400);
+
+    // Stage 2 — show comment after percent finishes
     setTimeout(() => {
-      resultPage.classList.remove('result-waiting');
-      resultPage.classList.add('result-ready');
+      const subtitle = document.querySelector('.result-score-subtitle');
       const note = document.querySelector('.result-score-note');
+      if (subtitle) requestAnimationFrame(() => subtitle.classList.add('visible'));
       if (note) requestAnimationFrame(() => note.classList.add('visible'));
-    }, 1500);
+
+      // Stage 3 — show bundle + rest of page after comment fades in
+      setTimeout(() => {
+        resultPage.classList.remove('result-waiting');
+        resultPage.classList.add('result-ready');
+      }, 900);
+    }, 1450);
   }, 300);
 }
 
