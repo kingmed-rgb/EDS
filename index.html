@@ -1329,7 +1329,7 @@
     background: var(--dark-card);
     border: 1px solid var(--dark-border);
     border-radius: 16px;
-    overflow: hidden;
+    padding: 28px 24px;
     text-align: left;
     margin-top: 28px;
     box-shadow: 0 4px 40px var(--shadow);
@@ -1339,54 +1339,46 @@
     .cta-block {
       border-radius: 20px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: stretch;
+      grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+      gap: 36px;
+      align-items: center;
+      padding: 36px;
       margin-top: 32px;
     }
   }
 
   .offer-img-wrap {
-    width: 100%;
-    padding: 32px 24px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #131313;
+    position: relative;
+    width: min(100%, 340px);
+    margin: 0 auto 20px;
+    border-radius: 16px;
+    background: radial-gradient(ellipse 90% 70% at 50% 55%, rgba(255,255,255,0.07) 0%, transparent 80%);
   }
 
   @media (min-width: 640px) {
     .offer-img-wrap {
-      padding: 40px 28px;
-      border-right: 1px solid var(--dark-border);
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto;
     }
   }
 
   .offer-cover {
     display: block;
     width: 100%;
-    max-width: 320px;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+    filter: drop-shadow(0 18px 36px rgba(0,0,0,0.6)) brightness(1.08) contrast(1.04);
   }
 
-  @media (min-width: 640px) {
-    .offer-cover {
-      max-width: 100%;
-    }
+  .offer-save-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
   }
 
   .offer-content {
-    padding: 28px 24px 32px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  @media (min-width: 640px) {
-    .offer-content {
-      padding: 36px 32px;
-      justify-content: center;
-    }
+    max-width: 520px;
   }
 
   .offer-eyebrow {
@@ -1448,6 +1440,24 @@
     font-size: 46px;
     font-weight: 400;
     line-height: 1;
+  }
+
+  .offer-save-badge {
+    background: rgba(10,10,10,0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(232,168,124,0.45);
+    border-radius: 999px;
+    color: var(--accent);
+    display: inline-flex;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    line-height: 1;
+    padding: 7px 12px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 2;
   }
 
   .offer-includes {
@@ -1898,6 +1908,7 @@
     <div class="cta-block">
       <div class="offer-img-wrap">
         <img class="offer-cover" src="bundle-mockup.png" alt="The Eldest Daughter Healing Bundle">
+        <span class="offer-save-badge">Save 53% today</span>
       </div>
       <div class="offer-content">
         <h3>The Eldest Daughter Healing Bundle</h3>
