@@ -616,9 +616,9 @@
 
   .result-score-subtitle {
     color: var(--accent);
-    font-size: 16px;
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     margin-top: 4px;
     text-align: center;
     text-transform: uppercase;
@@ -632,6 +632,14 @@
     margin: 14px auto 0;
     max-width: 520px;
     text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .result-score-note.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .visual-section {
@@ -1352,7 +1360,7 @@
     width: min(100%, 340px);
     margin: 0 auto 20px;
     border-radius: 16px;
-    background: #131313;
+    background: radial-gradient(ellipse 120% 100% at 50% 100%, rgba(232,168,124,0.07) 0%, transparent 65%), linear-gradient(160deg, #1c1814 0%, #111111 100%);
   }
 
   @media (min-width: 640px) {
@@ -2477,6 +2485,8 @@ function showResults() {
     setTimeout(() => {
       resultPage.classList.remove('result-waiting');
       resultPage.classList.add('result-ready');
+      const note = document.querySelector('.result-score-note');
+      if (note) requestAnimationFrame(() => note.classList.add('visible'));
     }, 1500);
   }, 300);
 }
