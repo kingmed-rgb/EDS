@@ -1349,7 +1349,7 @@
     background: var(--dark-card);
     border: 1px solid var(--dark-border);
     border-radius: 16px;
-    padding: 28px 24px;
+    overflow: hidden;
     text-align: left;
     margin-top: 28px;
     box-shadow: 0 4px 40px var(--shadow);
@@ -1359,43 +1359,56 @@
     .cta-block {
       border-radius: 20px;
       display: grid;
-      grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
-      gap: 36px;
-      align-items: center;
-      padding: 36px;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
       margin-top: 32px;
     }
   }
 
   .offer-img-wrap {
-    width: min(100%, 320px);
-    margin: 0 auto 8px;
+    padding: 32px 24px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @media (min-width: 640px) {
     .offer-img-wrap {
-      width: 100%;
-      max-width: 360px;
-      margin: 0 auto;
+      padding: 40px 32px;
+      border-right: 1px solid var(--dark-border);
     }
   }
 
   .offer-cover {
     display: block;
     width: 100%;
+    max-width: 300px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 24px 40px rgba(0,0,0,0.75)) brightness(1.06);
   }
 
-  .offer-save-badge {
-    position: absolute;
-    top: 14px;
-    right: 14px;
+  @media (min-width: 640px) {
+    .offer-cover {
+      max-width: 100%;
+    }
   }
 
   .offer-content {
-    max-width: 520px;
+    padding: 28px 24px 32px;
+  }
+
+  @media (min-width: 640px) {
+    .offer-content {
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  .offer-save-badge {
+    display: none;
   }
 
   .offer-eyebrow {
@@ -1925,7 +1938,6 @@
     <div class="cta-block">
       <div class="offer-img-wrap">
         <img class="offer-cover" src="bundle-mockup.png" alt="The Eldest Daughter Healing Bundle">
-        <span class="offer-save-badge">Save 53% today</span>
       </div>
       <div class="offer-content">
         <h3>The Eldest Daughter Healing Bundle</h3>
