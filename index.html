@@ -496,6 +496,7 @@
   }
 
   .result-page .cta-block,
+  .result-page .bonus-section,
   .result-page .learn-section,
   .result-page .reviews-section,
   .result-page .faq-section,
@@ -504,6 +505,7 @@
   }
 
   .result-page.result-waiting .cta-block,
+  .result-page.result-waiting .bonus-section,
   .result-page.result-waiting .learn-section,
   .result-page.result-waiting .reviews-section,
   .result-page.result-waiting .faq-section,
@@ -514,6 +516,7 @@
   }
 
   .result-page.result-ready .cta-block,
+  .result-page.result-ready .bonus-section,
   .result-page.result-ready .learn-section,
   .result-page.result-ready .reviews-section,
   .result-page.result-ready .faq-section,
@@ -992,6 +995,185 @@
     }
   }
 
+  /* ── Bonus Section ── */
+  .bonus-section {
+    margin-top: 28px;
+  }
+
+  .bonus-section-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .bonus-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .bonus-eyebrow::before,
+  .bonus-eyebrow::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+
+  .bonus-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.15;
+    margin-bottom: 4px;
+  }
+
+  @media (min-width: 640px) {
+    .bonus-section-title {
+      font-size: 30px;
+    }
+  }
+
+  .bonus-section-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+
+  .bonus-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (min-width: 640px) {
+    .bonus-grid {
+      gap: 20px;
+    }
+  }
+
+  .bonus-card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .bonus-card:hover {
+    border-color: rgba(232,168,124,0.35);
+    transform: translateY(-3px);
+  }
+
+  .bonus-card-thumb {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background-image: url('bundle-mockup.png');
+    background-size: 300%;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .bonus-card-thumb.poems-thumb {
+    background-position: 0% 20%;
+  }
+
+  .bonus-card-thumb.worksheet-thumb {
+    background-position: 100% 30%;
+  }
+
+  .bonus-card-body {
+    padding: 14px 14px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  @media (min-width: 640px) {
+    .bonus-card-body {
+      padding: 18px 18px 22px;
+      gap: 8px;
+    }
+  }
+
+  .bonus-free-tag {
+    display: inline-flex;
+    align-self: flex-start;
+    background: rgba(232,168,124,0.12);
+    border: 1px solid rgba(232,168,124,0.28);
+    color: var(--accent);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 999px;
+    line-height: 1;
+  }
+
+  .bonus-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.25;
+  }
+
+  @media (min-width: 640px) {
+    .bonus-card-title {
+      font-size: 18px;
+    }
+  }
+
+  .bonus-card-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  @media (min-width: 640px) {
+    .bonus-card-desc {
+      font-size: 13px;
+    }
+  }
+
+  .bonus-value-line {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid var(--dark-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .bonus-value-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+
+  .bonus-value-price {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    font-weight: 300;
+  }
+
+  /* ── /Bonus Section ── */
+
   .final-cta {
     margin-top: 20px;
     text-align: center;
@@ -1148,19 +1330,20 @@
 
   .offer-cover {
     display: block;
-    width: min(100%, 300px);
-    height: 340px;
+    width: min(100%, 320px);
+    height: auto;
+    aspect-ratio: 1 / 1;
     margin: 0 auto 24px;
     border-radius: 12px;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
-    filter: drop-shadow(0 20px 34px rgba(0,0,0,0.45));
+    filter: drop-shadow(0 16px 32px rgba(0,0,0,0.5));
   }
 
   @media (min-width: 640px) {
     .offer-cover {
-      width: min(100%, 340px);
-      height: 430px;
+      width: min(100%, 360px);
+      aspect-ratio: 1 / 1;
       margin: 0 auto;
     }
   }
@@ -1690,7 +1873,7 @@
     <div class="visual-section" id="visualSection"></div>
 
     <div class="cta-block">
-      <img class="offer-cover" src="book-cover - Edited.png" alt="The Eldest Daughter Workbook cover">
+      <img class="offer-cover" src="bundle-mockup.png" alt="The Eldest Daughter Healing Bundle">
       <div class="offer-content">
         <span class="offer-save-badge">Save 53% today</span>
         <h3>The Eldest Daughter Healing Bundle</h3>
@@ -1705,6 +1888,41 @@
           <li><span>Inner Child Healing Worksheet</span><span class="offer-badge">FREE</span></li>
         </ul>
         <a href="https://eldestdaughterbook.com" class="cta-btn">Get the bundle</a>
+      </div>
+    </div>
+
+    <!-- FREE BONUSES -->
+    <div class="bonus-section">
+      <div class="bonus-section-header">
+        <div class="bonus-eyebrow">Free with your order</div>
+        <h3 class="bonus-section-title">2 Bonus Items Included</h3>
+        <p class="bonus-section-sub">Yours free when you get the bundle today</p>
+      </div>
+      <div class="bonus-grid">
+        <div class="bonus-card">
+          <div class="bonus-card-thumb poems-thumb" role="img" aria-label="Poems & Letters for Eldest Daughters book cover"></div>
+          <div class="bonus-card-body">
+            <span class="bonus-free-tag">Free Bonus</span>
+            <h4 class="bonus-card-title">Poems &amp; Letters for Eldest Daughters</h4>
+            <p class="bonus-card-desc">Words for the things you've carried silently. To be read slowly and returned to.</p>
+            <div class="bonus-value-line">
+              <span class="bonus-value-label">Valued at</span>
+              <span class="bonus-value-price">$7</span>
+            </div>
+          </div>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-card-thumb worksheet-thumb" role="img" aria-label="Inner Child Healing Worksheet on tablet"></div>
+          <div class="bonus-card-body">
+            <span class="bonus-free-tag">Free Bonus</span>
+            <h4 class="bonus-card-title">Inner Child Healing Worksheet</h4>
+            <p class="bonus-card-desc">A guided space to revisit childhood memories and begin to heal what was left unspoken.</p>
+            <div class="bonus-value-line">
+              <span class="bonus-value-label">Valued at</span>
+              <span class="bonus-value-price">$7</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
