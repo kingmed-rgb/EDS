@@ -137,9 +137,44 @@
     font-size: 12px;
     color: var(--accent);
     letter-spacing: 0.05em;
-    margin-bottom: 20px;
     font-weight: 400;
   }
+  .quiz-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .back-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(232,168,124,0.28);
+    border-radius: 999px;
+    background: rgba(232,168,124,0.08);
+    color: var(--accent);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    line-height: 1;
+    transition: all 0.2s ease;
+  }
+
+  .back-btn:hover {
+    border-color: var(--accent);
+    background: rgba(232,168,124,0.14);
+    transform: translateX(-2px);
+  }
+
+  .back-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
 
   .question-card, .engagement-break {
     background: var(--dark-card);
@@ -426,6 +461,33 @@
     padding-top: 36px;
   }
 
+  .result-page .cta-block,
+  .result-page .learn-section,
+  .result-page .reviews-section,
+  .result-page .faq-section,
+  .result-page .final-cta {
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .result-page.result-waiting .cta-block,
+  .result-page.result-waiting .learn-section,
+  .result-page.result-waiting .reviews-section,
+  .result-page.result-waiting .faq-section,
+  .result-page.result-waiting .final-cta {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(24px);
+  }
+
+  .result-page.result-ready .cta-block,
+  .result-page.result-ready .learn-section,
+  .result-page.result-ready .reviews-section,
+  .result-page.result-ready .faq-section,
+  .result-page.result-ready .final-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -682,6 +744,210 @@
     }
   }
 
+
+  .reviews-section {
+    margin-top: 36px;
+    text-align: center;
+  }
+
+  .review-scoreline {
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 18px;
+  }
+
+  .review-scoreline .review-count,
+  .review-scoreline .rating-stars,
+  .review-stars {
+    color: var(--accent);
+  }
+
+  .review-track {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 0 0 4px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .review-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .review-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.018));
+    border: 1px solid rgba(232,168,124,0.24);
+    border-radius: 18px;
+    box-shadow: 0 16px 42px rgba(0,0,0,0.22);
+    flex: 0 0 100%;
+    min-height: 230px;
+    padding: 26px 22px;
+    scroll-snap-align: start;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .review-stars {
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 16px;
+    white-space: nowrap;
+  }
+
+  .review-quote {
+    color: var(--text-primary);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.42;
+    margin: 0 auto 20px;
+    max-width: 520px;
+  }
+
+  .review-author {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .review-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .review-dots button {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.18);
+    display: block;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+    transition: width 0.2s ease, background 0.2s ease;
+  }
+
+  .review-dots button.active {
+    background: var(--accent);
+    width: 18px;
+  }
+
+  .faq-section {
+    margin-top: 40px;
+  }
+
+  .faq-title {
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .faq-list {
+    border-top: 1px solid var(--dark-border);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--dark-border);
+  }
+
+  .faq-item summary {
+    color: var(--text-primary);
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 24px;
+    gap: 16px;
+    align-items: center;
+    list-style: none;
+    padding: 18px 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: '+';
+    color: var(--accent);
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1;
+    text-align: right;
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-item p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    padding: 0 40px 18px 0;
+  }
+
+  @media (min-width: 640px) {
+    .reviews-section {
+      margin-top: 48px;
+    }
+
+    .review-scoreline {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .review-card {
+      min-height: 260px;
+      padding: 34px 44px;
+    }
+
+    .review-stars {
+      font-size: 26px;
+    }
+
+    .review-quote {
+      font-size: 22px;
+      line-height: 1.38;
+    }
+
+    .faq-section {
+      margin-top: 48px;
+    }
+
+    .faq-item summary {
+      font-size: 18px;
+      padding: 22px 0;
+    }
+
+    .faq-item p {
+      font-size: 15px;
+      padding-bottom: 22px;
+    }
+  }
+
   .final-cta {
     margin-top: 20px;
     text-align: center;
@@ -691,6 +957,29 @@
     width: 100%;
     max-width: 420px;
     text-align: center;
+  }
+
+  .site-footer {
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    font-weight: 300;
+    margin: 34px 0 0;
+    opacity: 0.75;
+    text-align: center;
+  }
+
+  .site-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .site-footer a:hover {
+    color: var(--accent);
   }
 
   .benefit-item {
@@ -870,6 +1159,7 @@
   .offer-price {
     display: flex;
     align-items: baseline;
+    flex-wrap: wrap;
     gap: 14px;
     margin-bottom: 20px;
   }
@@ -886,6 +1176,19 @@
     font-size: 46px;
     font-weight: 400;
     line-height: 1;
+  }
+
+  .offer-save-badge {
+    align-self: center;
+    border: 1px solid rgba(232,168,124,0.34);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    padding: 8px 10px;
+    text-transform: uppercase;
   }
 
   .offer-includes {
@@ -1074,7 +1377,10 @@
     <div class="progress-bar-wrap">
       <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
     </div>
-    <div class="progress-label" id="progressLabel">Question 1 of 10</div>
+    <div class="quiz-nav">
+      <button class="back-btn hidden" id="backBtn" type="button" onclick="goBack()" aria-label="Go back">&lsaquo;</button>
+      <div class="progress-label" id="progressLabel">Question 1 of 10</div>
+    </div>
     <div class="question-card" id="questionCard">
       <div class="q-number" id="qNumber">Question 1</div>
       <div class="q-text" id="qText"></div>
@@ -1103,12 +1409,12 @@
     <div class="cta-block">
       <img class="offer-cover" src="book-cover - Edited.png" alt="The Eldest Daughter Workbook cover">
       <div class="offer-content">
-        <div class="offer-eyebrow">Offer bundle</div>
         <h3>The Eldest Daughter Healing Bundle</h3>
         <p>The ultimate guide for eldest daughters who are tired of being the strong one, the fixer, and the third parent, and are ready to rest, be seen, and be loved without conditions.</p>
         <div class="offer-price">
           <span class="offer-new-price">$9</span>
           <span class="offer-old-price">$19</span>
+          <span class="offer-save-badge">Save 53% today</span>
         </div>
         <ul class="offer-includes">
           <li><span>The Eldest Daughter Workbook (PDF)</span></li>
@@ -1142,10 +1448,87 @@
       </div>
     </div>
 
+    <div class="visual-section reviews-section">
+      <h3 class="review-scoreline">Excellent <span class="review-count">140</span> <span class="rating-stars" aria-label="5 star reviews">&#9733;&#9733;&#9733;&#9733;&#9733;</span></h3>
+      <div class="review-track" aria-label="Customer reviews">
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-quote">"I finally had words for why rest felt impossible. It felt like someone understood the part of me I always hide."</p>
+          <div class="review-author">Maya, 29, Austin</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-quote">"The prompts were direct without being harsh. I cried, but in the way that makes space afterward."</p>
+          <div class="review-author">Leila, 31, Chicago</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-quote">"This helped me see the difference between being needed and being loved. That hit me hard."</p>
+          <div class="review-author">Sofia, 27, Miami</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-quote">"I kept stopping because every page felt too accurate. In a good way. I felt seen without feeling judged."</p>
+          <div class="review-author">Nora, 34, Seattle</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-quote">"The inner child worksheet made me realize how young I was when I started acting like the adult."</p>
+          <div class="review-author">Jasmine, 30, Atlanta</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-quote">"It gave me language for the guilt. I didn't know how much I needed that until I wrote it down."</p>
+          <div class="review-author">Claire, 36, Denver</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-quote">"I bought it for the workbook, but the poems were what broke me open. Soft, honest, and painfully familiar."</p>
+          <div class="review-author">Amara, 28, Boston</div>
+        </div>
+      </div>
+      <div class="review-dots" aria-label="Choose a review">
+        <button class="active" type="button" aria-label="Show review 1" data-review-dot="0"></button>
+        <button type="button" aria-label="Show review 2" data-review-dot="1"></button>
+        <button type="button" aria-label="Show review 3" data-review-dot="2"></button>
+        <button type="button" aria-label="Show review 4" data-review-dot="3"></button>
+        <button type="button" aria-label="Show review 5" data-review-dot="4"></button>
+        <button type="button" aria-label="Show review 6" data-review-dot="5"></button>
+        <button type="button" aria-label="Show review 7" data-review-dot="6"></button>
+      </div>
+    </div>
+
+    <div class="visual-section faq-section">
+      <h3 class="faq-title">Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is this a physical book?</summary>
+          <p>No. The bundle is delivered digitally, so you can open the workbook and bonuses right away on your phone, tablet, or computer.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Who is this workbook for?</summary>
+          <p>It is for eldest daughters who became the responsible one, the fixer, the emotional support person, or the child who had to grow up too soon.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What do I get in the bundle?</summary>
+          <p>You get The Eldest Daughter Workbook PDF, Poems &amp; Letters, and the Inner Child Healing Worksheet.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need to finish it all at once?</summary>
+          <p>No. The workbook is designed to move slowly. You can work through one page, one prompt, or one section whenever you have capacity.</p>
+        </details>
+      </div>
+    </div>
+
     <div class="final-cta">
       <a href="https://eldestdaughterbook.com" class="cta-btn">Get The Bundle</a>
     </div>
   </div>
+
+  <footer class="site-footer">
+    <a href="/privacy-policy/">Privacy Policy</a>
+    <a href="/terms-of-service/">Terms of Service</a>
+  </footer>
 
 </div>
 
@@ -1286,6 +1669,8 @@ let realQuestionIndex = 0;
 let scores = [];
 let answered = {};
 let selectedMulti = [];
+let selectedAnswers = {};
+let autoAdvanceTimer = null;
 
 function startQuiz() {
   document.body.classList.remove('showing-results');
@@ -1296,6 +1681,8 @@ function startQuiz() {
   realQuestionIndex = 0;
   scores = [];
   answered = {};
+  selectedAnswers = {};
+  clearTimeout(autoAdvanceTimer);
   renderQuestion(0);
 }
 
@@ -1314,6 +1701,8 @@ function getMaxScore() {
 
 function renderQuestion(index) {
   const q = questions[index];
+  clearTimeout(autoAdvanceTimer);
+  updateBackButton();
   
   if (q.type === 'break') {
     renderBreak(q);
@@ -1334,7 +1723,7 @@ function renderQuestion(index) {
 
     const container = document.getElementById('optionsContainer');
     container.innerHTML = '';
-    selectedMulti = [];
+    selectedMulti = Array.isArray(selectedAnswers[q.id]) ? [...selectedAnswers[q.id]] : [];
 
     if (q.type === 'multi') {
       const div = document.createElement('div');
@@ -1343,6 +1732,7 @@ function renderQuestion(index) {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
         btn.textContent = opt.label;
+        if (selectedMulti.includes(i)) btn.classList.add('selected');
         btn.onclick = () => toggleMulti(btn, i, q);
         div.appendChild(btn);
       });
@@ -1354,13 +1744,8 @@ function renderQuestion(index) {
         const item = document.createElement('div');
         item.className = 'scale-item';
         item.innerHTML = `<div class="scale-dot"></div><div class="scale-text">${opt.label}</div>`;
-        item.onclick = () => {
-          document.querySelectorAll('.scale-item').forEach(el => el.classList.remove('selected'));
-          item.classList.add('selected');
-          scores[q.id] = opt.points;
-          answered[q.id] = true;
-          showNext();
-        };
+        if (selectedAnswers[q.id] === i) item.classList.add('selected');
+        item.onclick = () => selectSingleChoice(item, i, q, div, '.scale-item');
         div.appendChild(item);
       });
       container.appendChild(div);
@@ -1371,14 +1756,15 @@ function renderQuestion(index) {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
         btn.textContent = opt.label;
-        btn.onclick = () => selectSingle(btn, i, q, container);
+        if (selectedAnswers[q.id] === i) btn.classList.add('selected');
+        btn.onclick = () => selectSingleChoice(btn, i, q, div, '.option-btn');
         div.appendChild(btn);
       });
       container.appendChild(div);
     }
 
     const nb = document.getElementById('nextBtn');
-    nb.classList.remove('show');
+    nb.classList.toggle('show', q.type === 'multi' && !!answered[q.id]);
 
     const pct = Math.round((qIndex / numQs) * 100);
     document.getElementById('progressFill').style.width = pct + '%';
@@ -1421,12 +1807,15 @@ function renderBreak(q) {
   }, 200);
 }
 
-function selectSingle(btn, i, q, container) {
-  container.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
+function selectSingleChoice(el, i, q, container, selector) {
+  clearTimeout(autoAdvanceTimer);
+  container.querySelectorAll(selector).forEach(item => item.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedAnswers[q.id] = i;
   scores[q.id] = q.options[i].points;
   answered[q.id] = true;
-  showNext();
+  hideNext();
+  autoAdvanceTimer = setTimeout(nextQuestion, 260);
 }
 
 function toggleMulti(btn, i, q) {
@@ -1438,9 +1827,12 @@ function toggleMulti(btn, i, q) {
     btn.classList.add('selected');
   }
 
+  selectedAnswers[q.id] = [...selectedMulti];
+
   if (selectedMulti.length === 0) {
     delete scores[q.id];
     delete answered[q.id];
+    delete selectedAnswers[q.id];
     hideNext();
     return;
   }
@@ -1458,7 +1850,22 @@ function hideNext() {
   document.getElementById('nextBtn').classList.remove('show');
 }
 
+function updateBackButton() {
+  const backBtn = document.getElementById('backBtn');
+  if (!backBtn) return;
+  backBtn.classList.toggle('hidden', currentQ === 0);
+}
+
+function goBack() {
+  if (currentQ === 0) return;
+  clearTimeout(autoAdvanceTimer);
+  currentQ--;
+  while (currentQ > 0 && questions[currentQ].type === 'break') currentQ--;
+  renderQuestion(currentQ);
+}
+
 function nextQuestion() {
+  clearTimeout(autoAdvanceTimer);
   const q = questions[currentQ];
   if (q && q.type !== 'break' && !answered[q.id]) return;
 
@@ -1518,6 +1925,9 @@ function showResults() {
   document.getElementById('quizPage').style.display = 'none';
   document.body.classList.remove('quiz-active');
   document.body.classList.add('showing-results');
+  const resultPage = document.getElementById('resultPage');
+  resultPage.classList.remove('result-ready');
+  resultPage.classList.add('result-waiting');
   const total = Object.values(scores).reduce((a, b) => a + b, 0);
   const maxScore = getMaxScore();
   const percent = maxScore ? Math.round((total / maxScore) * 100) : 0;
@@ -1537,13 +1947,17 @@ function showResults() {
 
   document.getElementById('visualSection').style.marginBottom = '';
 
-  document.getElementById('resultPage').classList.add('visible');
+  resultPage.classList.add('visible');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   // Animate percentage after render
   setTimeout(() => {
     const el = document.getElementById('animPercent');
     if (el) animatePercent(el, percent, 1400);
+    setTimeout(() => {
+      resultPage.classList.remove('result-waiting');
+      resultPage.classList.add('result-ready');
+    }, 1500);
   }, 300);
 }
 
@@ -1554,14 +1968,67 @@ function restartQuiz() {
   realQuestionIndex = 0;
   scores = [];
   answered = {};
+  selectedAnswers = {};
   selectedMulti = [];
+  clearTimeout(autoAdvanceTimer);
 
-  document.getElementById('resultPage').classList.remove('visible');
+  document.getElementById('resultPage').classList.remove('visible', 'result-waiting', 'result-ready');
   document.getElementById('quizPage').style.display = 'none';
   document.getElementById('introPage').style.display = 'block';
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+function initReviewCarousel() {
+  const track = document.querySelector('.review-track');
+  const cards = Array.from(document.querySelectorAll('.review-card'));
+  const dots = Array.from(document.querySelectorAll('[data-review-dot]'));
+  if (!track || !cards.length || dots.length !== cards.length) return;
+
+  const setActiveDot = (index) => {
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+      dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+    });
+  };
+
+  const updateActiveDot = () => {
+    const trackCenter = track.scrollLeft + track.clientWidth / 2;
+    let activeIndex = 0;
+    let closestDistance = Infinity;
+    cards.forEach((card, index) => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const distance = Math.abs(trackCenter - cardCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        activeIndex = index;
+      }
+    });
+    setActiveDot(activeIndex);
+  };
+
+  let ticking = false;
+  track.addEventListener('scroll', () => {
+    if (ticking) return;
+    window.requestAnimationFrame(() => {
+      updateActiveDot();
+      ticking = false;
+    });
+    ticking = true;
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      track.scrollTo({ left: cards[index].offsetLeft, behavior: 'smooth' });
+      setActiveDot(index);
+    });
+  });
+
+  updateActiveDot();
+}
+
+document.addEventListener('DOMContentLoaded', initReviewCarousel);
+
 </script>
 </body>
 </html>
