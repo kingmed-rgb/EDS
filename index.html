@@ -1408,7 +1408,19 @@
   }
 
   .offer-save-badge {
-    display: none;
+    display: inline-flex;
+    align-self: flex-start;
+    border: 1px solid rgba(232,168,124,0.34);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    line-height: 1;
+    margin-bottom: 14px;
+    padding: 7px 12px;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
   .offer-eyebrow {
@@ -1472,23 +1484,6 @@
     line-height: 1;
   }
 
-  .offer-save-badge {
-    background: rgba(10,10,10,0.75);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(232,168,124,0.45);
-    border-radius: 999px;
-    color: var(--accent);
-    display: inline-flex;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.13em;
-    line-height: 1;
-    padding: 7px 12px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    z-index: 2;
-  }
 
   .offer-includes {
     border-top: 1px solid var(--dark-border);
@@ -1940,6 +1935,7 @@
         <img class="offer-cover" src="bundle-mockup.png" alt="The Eldest Daughter Healing Bundle">
       </div>
       <div class="offer-content">
+        <span class="offer-save-badge">Save 53% today</span>
         <h3>The Eldest Daughter Healing Bundle</h3>
         <p>The ultimate guide for eldest daughters who are tired of being the strong one, the fixer, and the third parent, and are ready to rest, be seen, and be loved without conditions.</p>
         <div class="offer-price">
