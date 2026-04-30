@@ -832,8 +832,26 @@
   }
 
   .review-scoreline .review-count,
-  .review-scoreline .rating-stars,
   .review-stars {
+    color: var(--accent);
+  }
+
+  .rating-stars-wrap {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+  }
+  .stars-bg {
+    color: rgba(232,168,124,0.25);
+    display: block;
+  }
+  .stars-fg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    width: 94%;
+    white-space: nowrap;
     color: var(--accent);
   }
 
@@ -1995,7 +2013,7 @@
     </div>
 
     <div class="visual-section reviews-section">
-      <h3 class="review-scoreline">Excellent <span class="review-count">140</span> <span class="rating-stars" aria-label="5 star reviews">&#9733;&#9733;&#9733;&#9733;&#9733;</span></h3>
+      <h3 class="review-scoreline"><span class="rating-stars-wrap" aria-label="4.7 out of 5 stars"><span class="stars-bg">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="stars-fg">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span> 4.7 &middot; <span class="review-count">140 reviews</span></h3>
       <div class="review-track" aria-label="Customer reviews">
         <div class="review-card">
           <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
