@@ -17,10 +17,29 @@
   a { color: var(--accent); text-decoration: none; }
   .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 28px; }
   .updated { color: var(--accent); font-size: 12px; letter-spacing: 0.1em; margin-bottom: 24px; text-transform: uppercase; }
+  .back-home {
+    align-items: center;
+    border: 1px solid rgba(232,168,124,0.34);
+    border-radius: 999px;
+    color: var(--accent);
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 500;
+    gap: 8px;
+    letter-spacing: 0.06em;
+    margin-bottom: 18px;
+    min-height: 42px;
+    padding: 10px 16px;
+    text-transform: uppercase;
+  }
+  .back-home:hover { background: rgba(232,168,124,0.08); border-color: var(--accent); }
+  .bottom-back { margin-top: 28px; }
+  .bottom-back .back-home { margin-bottom: 0; }
 </style>
 </head>
 <body>
 <main>
+  <a class="back-home" href="/"><span aria-hidden="true">‹</span> Back to home</a>
   <div class="card">
     <p class="updated">Last updated: April 30, 2026</p>
     <h1>Terms of Service</h1>
@@ -54,7 +73,7 @@
     <h2>Contact</h2>
     <p>For questions about these terms, contact us at <a href="mailto:support@eldestdaughter.app">support@eldestdaughter.app</a>.</p>
 
-    <p><a href="/">Back to home</a></p>
+    <p class="bottom-back"><a class="back-home" href="/"><span aria-hidden="true">‹</span> Back to home</a></p>
   </div>
 </main>
 </body>
