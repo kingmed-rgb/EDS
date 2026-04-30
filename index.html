@@ -1366,6 +1366,7 @@
   }
 
   .offer-img-wrap {
+    position: relative;
     padding: 8px 16px 0;
     display: flex;
     align-items: center;
@@ -1408,19 +1409,37 @@
   }
 
   .offer-save-badge {
-    display: inline-flex;
-    align-self: flex-start;
-    border: 1px solid rgba(232,168,124,0.34);
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(10,10,10,0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(232,168,124,0.4);
     border-radius: 999px;
     color: var(--accent);
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 600;
-    letter-spacing: 0.13em;
+    letter-spacing: 0.11em;
     line-height: 1;
-    margin-bottom: 14px;
-    padding: 7px 12px;
+    padding: 6px 10px;
     text-transform: uppercase;
     white-space: nowrap;
+    z-index: 2;
+  }
+
+  @media (min-width: 640px) {
+    .offer-save-badge {
+      position: static;
+      display: inline-flex;
+      align-self: flex-start;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      margin-bottom: 14px;
+      font-size: 10px;
+      padding: 7px 12px;
+    }
   }
 
   .offer-eyebrow {
@@ -1933,9 +1952,10 @@
     <div class="cta-block">
       <div class="offer-img-wrap">
         <img class="offer-cover" src="bundle-mockup.png" alt="The Eldest Daughter Healing Bundle">
+        <span class="offer-save-badge">Recommended for you</span>
       </div>
       <div class="offer-content">
-        <span class="offer-save-badge">Save 53% today</span>
+        <span class="offer-save-badge">Recommended for you</span>
         <h3>The Eldest Daughter Healing Bundle</h3>
         <p>The ultimate guide for eldest daughters who are tired of being the strong one, the fixer, and the third parent, and are ready to rest, be seen, and be loved without conditions.</p>
         <div class="offer-price">
