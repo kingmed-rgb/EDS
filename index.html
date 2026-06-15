@@ -22,6 +22,36 @@
 <meta name="twitter:description" content="You've spent years being the strong one. Take the 2-minute test and see how deeply the eldest daughter role shaped you.">
 <meta name="twitter:image" content="https://eldestdaughter.app/bundle-mockup.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Analytics IDs: replace these placeholders with your real IDs before publishing. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-874XF1X3E3"></script>
+<script>
+  // GA4 Measurement ID: G-874XF1X3E3
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-874XF1X3E3', { send_page_view: false });
+</script>
+<script>
+  // Microsoft Clarity Project ID: replace CLARITY_PROJECT_ID with your real project ID.
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+</script>
+<script>
+  // Meta Pixel ID: replace META_PIXEL_ID with your real Meta Pixel ID.
+  !function(f,b,e,v,n,t,s){
+    if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s);
+  }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'META_PIXEL_ID');
+</script>
+<script src="/analytics.js" defer></script>
 <style>
   :root {
     --dark-bg: #0F0F0F;
@@ -2048,7 +2078,7 @@
           <li><span>Poems &amp; Letters</span><span class="offer-badge">FREE</span></li>
           <li><span>Inner Child Healing Worksheet</span><span class="offer-badge">FREE</span></li>
         </ul>
-        <a href="https://buy.stripe.com/14A3cu3DL5D01mj8qebfO02" class="cta-btn">Get the bundle</a>
+        <a href="https://buy.stripe.com/14A3cu3DL5D01mj8qebfO02" class="cta-btn" data-analytics-event="checkout_started">Get the bundle</a>
         <div class="cta-trust">
           <span class="cta-trust-secure">
             <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 0L0 2.167V6c0 3.308 2.333 6.4 5.5 7.167C8.667 12.4 11 9.308 11 6V2.167L5.5 0z" fill="currentColor" opacity=".5"/><path d="M3.5 6.5l1.5 1.5 3-3" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2156,7 +2186,7 @@
     </div>
 
     <div class="final-cta">
-      <a href="https://buy.stripe.com/14A3cu3DL5D01mj8qebfO02" class="cta-btn">Get The Bundle</a>
+      <a href="https://buy.stripe.com/14A3cu3DL5D01mj8qebfO02" class="cta-btn" data-analytics-event="checkout_started">Get The Bundle</a>
     </div>
   </div>
 
@@ -2310,6 +2340,9 @@ function scrollToQuizTop() {
 }
 
 function startQuiz() {
+  if (window.EDSAnalytics) {
+    window.EDSAnalytics.trackQuizStarted();
+  }
   document.body.classList.remove('showing-results');
   document.body.classList.add('quiz-active');
   document.getElementById('introPage').style.display = 'none';
@@ -2588,6 +2621,14 @@ function showResults() {
   const maxScore = getMaxScore();
   const percent = maxScore ? Math.round((total / maxScore) * 100) : 0;
   const resultCopy = getResultCopy(total);
+  if (window.EDSAnalytics) {
+    window.EDSAnalytics.trackQuizCompleted({
+      score: total,
+      max_score: maxScore,
+      score_percent: percent,
+      result_tier: resultCopy.title
+    });
+  }
 
   document.getElementById('resultTier').innerHTML = '';
 
